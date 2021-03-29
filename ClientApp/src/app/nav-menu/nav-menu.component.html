@@ -1,0 +1,21 @@
+
+  <nav class="navbar navbar-light">
+    <div class="w-100">
+      <a class="navbar-brand" [routerLink]="['/']">List of Employees</a>
+      <p *ngIf="!employees"><em>Loading...</em></p>
+      <div>
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item" *ngFor="let employee of employees" *ngIf="employees">            
+            <div>
+              <img src="{{ employee.photo }}" />
+            </div>
+            <div>
+              <p>{{ employee.name }}</p>
+              <p>{{ employee.jobRole }}</p>
+            </div>
+          </li>          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
