@@ -11,15 +11,16 @@ export class NavMenuComponent {
   public employees: Employee[];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Employee[]>(baseUrl + 'weatherforecast').subscribe(result => {
+    http.get<Employee[]>(baseUrl + 'Employees/GetAll/').subscribe(result => {
       this.employees = result;
     }, error => console.error(error));
   }
 }
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+interface Employee {
+  employeeId: number;
+  name: string;
+  jobRole: string;
+  photo: string; 
 }
+
