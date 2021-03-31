@@ -30,10 +30,10 @@ namespace ThynkWebApp.Controllers
 
         [HttpGet()]
         [Route("[action]/{id?}")]
-        public Employee GetEmployee(int? userId)
+        public Employee GetEmployee(int? id)
         {
             ThynkTaskContext db = new();
-            return db.Employees.Where(x => x.EmployeeId == userId).SingleOrDefault();   
+            return db.Employees.Where(x => x.EmployeeId == id).SingleOrDefault();   
         }
     }
 }

@@ -4,7 +4,8 @@
       <a class="navbar-brand" [routerLink]="['/']">List of Employees</a>
        <div>
         <ul class="navbar-nav flex-grow">
-          <li class="nav-item" *ngFor="let employee of employees">            
+          <li class="nav-item" *ngFor="let employee of employees">
+            <a class="navbar-brand" [routerLink]="['/home']" [queryParams]="{Id:employee.employeeId}">
             <div>
               <img src="{{ employee.photo }}" />
             </div>
@@ -12,6 +13,7 @@
               <p>{{ employee.name }}</p>
               <p>{{ employee.jobRole }}</p>
             </div>
+              </a>
           </li>          
         </ul>
       </div>
