@@ -30,6 +30,7 @@ namespace ThynkWebApp
                 configuration.RootPath = "ClientApp/dist";
             });
             services.AddDbContext<ThynkTaskContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

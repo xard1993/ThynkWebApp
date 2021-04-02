@@ -1,2 +1,39 @@
 <p *ngIf="!employee">Please select an employee</p>
 <p *ngIf="employee != null">{{employee.employeeId}}</p>
+
+
+<div class="container">
+  <form novalidate [formGroup]="employeeFG" (ngSubmit)="onSubmit(employeeFG, employeeFG.isValid)">
+    <div class="form-group">
+      <label>
+        <span>Name</span>
+      </label>
+      <input type="text" formControlName="name" class="form-control" placeholder="Employee Name">
+      <div [hidden]="employeeFG.controls.name.valid || employeeFG.controls.name.pristine" class="alert alert-danger">
+        <span *ngIf="!employeeFG.controls.name.valid">Name is required!</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>
+        <span>Url </span>
+      </label>
+      <input type="text" formControlName="url" class="form-control" placeholder="url">
+      <div [hidden]="employeeFG.controls.url.valid || employeeFG.controls.url.pristine" class="alert alert-danger">
+        <span *ngIf="!employeeFG.controls.url.valid">Url is required!</span>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label>
+        <span>Description</span>
+      </label>
+      <textarea formControlName="description" class="form-control" placeholder="Description"></textarea>
+      <div [hidden]="employeeFG.controls.description.valid || employeeFG.controls.description.pristine" class="alert alert-danger">
+        <span *ngIf="!employeeFG.controls.description.valid">Description is required!</span>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!employeeFG.valid">Add</button>
+
+  </form>
+
+</div>

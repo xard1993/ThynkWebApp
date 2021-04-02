@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using ThynkWebApp.Models;
 
 namespace ThynkWebApp.Controllers
@@ -35,5 +36,52 @@ namespace ThynkWebApp.Controllers
             ThynkTaskContext db = new();
             return db.Employees.Where(x => x.EmployeeId == id).SingleOrDefault();   
         }
+
+        [HttpPost()]
+        [Route("[action]")]
+        public int AddEmployee(JObject employee)
+        {
+            ThynkTaskContext db = new();
+            Employee emp = new Employee();
+            emp.Name = (string)employee["name"];
+            emp.JobRole = (string)employee["jobRole"];
+            emp.Motto = (string)employee["motto"];
+            emp.Hobbies = (string)employee["hobbies"];
+            emp.Hometown = (string)employee["hometown"];
+            emp.PersonalBlog = (string)employee["personalbBlog"];
+            db.Employees.Add(emp);
+            return db.SaveChanges();            
+        }
+
+        [HttpPost()]
+        [Route("[action]")]
+        public int UpdateEmployee(JObject employee)
+        {
+            ThynkTaskContext db = new();
+            var employeeResult = db.Employees.Where(x => x.EmployeeId == (int)employee["employeeId"]).SingleOrDefault();
+            
+            if (employeeResult != null)
+            {
+                employeeResult.Name = (string)employee["name"];
+                employeeResult.JobRole = (string)employee["jobRole"];
+                employeeResult.Motto = (string)employee["motto"];
+                employeeResult.Hobbies = (string)employee["hobbies"];
+                employeeResult.Hometown = (string)employee["hometown"];
+                employeeResult.PersonalBlog = (string)employee["personalbBlog"];
+                return db.SaveChanges();
+            }
+            return 0;
+        }
+
+        [HttpPost()]
+        [Route("[action]/{id?}")]
+        public int DeleteEmployee(int? employeeID)
+        {
+            ThynkTaskContext db = new();
+            var employeeResult = db.Employees.Where(x => x.EmployeeId == employeeID).SingleOrDefault();
+            db.Employees.Remove(employeeResult);
+            return db.SaveChanges();          
+        }
+
     }
 }

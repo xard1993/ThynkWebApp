@@ -5,7 +5,7 @@
        <div>
         <ul class="navbar-nav flex-grow">
           <li class="nav-item" *ngFor="let employee of employees">
-            <a class="navbar-brand" [routerLink]="['/home']" [queryParams]="{Id:employee.employeeId}">
+            <a class="navbar-brand" [routerLink]="['/emp']" [queryParams]="{Id:employee.employeeId}">
             <div>
               <img src="{{ employee.photo }}" />
             </div>

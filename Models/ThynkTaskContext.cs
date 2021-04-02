@@ -15,7 +15,6 @@ namespace ThynkWebApp.Models
         public ThynkTaskContext(DbContextOptions<ThynkTaskContext> options)
             : base(options)
         {
-
         }
 
         public virtual DbSet<Employee> Employees { get; set; }
@@ -34,12 +33,10 @@ namespace ThynkWebApp.Models
 
             modelBuilder.Entity<Employee>(entity =>
             {
-                entity.HasIndex(e => e.EmployeeId, "UQ__Employee__7AD04FF0713902DA")
+                entity.HasIndex(e => e.EmployeeId, "UQ__Employee__7AD04FF057D3BB6D")
                     .IsUnique();
 
-                entity.Property(e => e.EmployeeId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("EmployeeID");
+                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
 
                 entity.Property(e => e.Hobbies).IsUnicode(false);
 

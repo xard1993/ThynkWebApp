@@ -1,0 +1,39 @@
+<form [formGroup]="addUpdateForm" (ngSubmit)="onSubmit()">
+  <div>
+    <input id="name" type="text" formControlName="name">
+  </div>
+  <div>
+    <input id="jobRole" type="text" formControlName="jobRole">
+  </div>
+
+  <div>
+    <label for="motto">
+      Motto
+    </label>
+    <input id="motto" type="text" formControlName="motto">
+  </div>
+
+  <div>
+    <label for="hobbies">
+      Hobbies
+    </label>
+    <input id="hobbies" type="text" formControlName="hobbies">
+  </div>
+
+  <div>
+    <label for="hometown">
+      Hometown
+    </label>
+    <input id="hometown" type="text" formControlName="hometown">
+  </div>
+
+  <div>
+    <label for="personalBlog">
+      Personal Blog
+    </label>
+    <input id="personalBlog" type="text" formControlName="personalBlog">
+  </div>
+
+  <button class="button" type="submit">Save</button>
+
+</form>
