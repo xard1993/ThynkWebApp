@@ -1,14 +1,39 @@
-.circleBase {
+.circle
+{
+    position:relative;
+}
+.circle, #photo, #pencil {
+  width: 12vw;
+  height: 12vw;
   border-radius: 50%;
 }
 
-.circle {
-  width: 100px;
-  height: 100px;
-  background: none;
-  border: 3px solid #80bc43;
+
+
+  #pencil:hover {
+    background-image: url('~/assets/img/pencil.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: none;
+  }
+
+#photo:hover {
+  background-color: #80bc43;
+  padding: 3px;
+  position: absolute;
+  top: 0;
 }
 
- .circle:hover {
 
-  }
+#photo {
+  background-color: #80bc43;
+  padding: 3px;
+  position:absolute;
+  top:0;
+}
+
+form input {
+  background-color: #f1f1f1;
+  border: 1px solid #cdcdcd !important;
+}
+
