@@ -1,22 +1,36 @@
-
-  <nav class="navbar navbar-light">
-    <div class="w-100">
-      <a class="navbar-brand" [routerLink]="['/']">List of Employees</a>
-       <div>
-        <ul class="navbar-nav flex-grow">
-          <li class="nav-item" *ngFor="let employee of employees">
-            <a class="navbar-brand" [routerLink]="['/emp']" [queryParams]="{Id:employee.employeeId}">
-            <div>
-              <img src="{{ employee.photo }}" />
-            </div>
-            <div>
-              <p>{{ employee.name }}</p>
-              <p>{{ employee.jobRole }}</p>
-            </div>
-              </a>
-          </li>          
-        </ul>
-      </div>
+<nav class="navbar navbar-light px-0 py-0">
+  <div class="w-100">
+    <div class="w-100 p-3">
+      <a class="navbar-brand" [routerLink]="['/']">
+        <p id="title" class="text-normal fs-1">List of Employees</p>
+      </a>
+      <a  [routerLink]="['/emp']">
+        <img class="float-right" src="..\assets\img\plus.png" />
+      </a>
     </div>
-  </nav>
+    <div>
+      <ul class="navbar-nav flex-grow mt-3">
+        <li class="nav-item mt-0 mr-0" *ngFor="let employee of employees">
+          <a class="navbar-brand pl-2" [routerLink]="['/emp']" [queryParams]="{Id:employee.employeeId}">
+            <div class="container pl-2">
+              <div *ngIf=" employee.photo != null ; then photo; else default">
+              </div>
+              <ng-template #photo>
+                <img id="employee-photo" src="data:image/jpeg;base64,{{ employee.photo }}" />
+              </ng-template>
+              <ng-template #default>
+                <img id="employee-photo" src="..\assets\img\unknown.jpg" />
+              </ng-template>
+              <div class="my-2 mx-2">
+                <p id="name" class="text-left nav-item-p my-0 mx-0 font-weight-bold">{{ employee.name }}</p>
+                <p id="role" class="text-left nav-item-p my-0 mx-0">{{ employee.jobRole }}</p>
+              </div>
+            </div>
+
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 

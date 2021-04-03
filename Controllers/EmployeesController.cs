@@ -35,6 +35,7 @@ namespace ThynkWebApp.Controllers
         {
             ThynkTaskContext db = new();
             return db.Employees.Where(x => x.EmployeeId == id).SingleOrDefault();   
+          
         }
 
         [HttpPost()]
@@ -49,6 +50,7 @@ namespace ThynkWebApp.Controllers
             emp.Hobbies = (string)employee["hobbies"];
             emp.Hometown = (string)employee["hometown"];
             emp.PersonalBlog = (string)employee["personalbBlog"];
+            emp.Photo = (string)employee["photo"] != null ? Convert.FromBase64String((string)employee["photo"]) : null;
             db.Employees.Add(emp);
             return db.SaveChanges();            
         }
@@ -67,7 +69,10 @@ namespace ThynkWebApp.Controllers
                 employeeResult.Motto = (string)employee["motto"];
                 employeeResult.Hobbies = (string)employee["hobbies"];
                 employeeResult.Hometown = (string)employee["hometown"];
-                employeeResult.PersonalBlog = (string)employee["personalbBlog"];
+                employeeResult.PersonalBlog = (string)employee["personalBlog"];              
+                employeeResult.Photo = (string)employee["photo"] != null ? Convert.FromBase64String((string)employee["photo"]) : null;
+                       
+                           
                 return db.SaveChanges();
             }
             return 0;

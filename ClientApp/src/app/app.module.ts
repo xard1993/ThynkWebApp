@@ -12,9 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AddUpdateEmployeeComponent } from './employee-form/add-update-employee/add-update-employee.component';
 
 
-@ngModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: ‘reload’ })],
-  exports: [RouterModule],})
+
 @NgModule({
   declarations: [
     AppComponent,

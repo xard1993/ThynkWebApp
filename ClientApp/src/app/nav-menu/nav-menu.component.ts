@@ -9,15 +9,21 @@ import { HttpClient } from '@angular/common/http';
 export class NavMenuComponent {
 
   public employees: Employee[];
-
+  baseURL: string;
+  http: HttpClient;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Employee[]>(baseUrl + 'Employees/GetAll/').subscribe(result => {
-      this.employees = result;
-    }, error => console.error(error));
+    this.baseURL = baseUrl;
+    this.http = http;
   }
 
+  ngOnInit() {
+    this.http.get<Employee[]>(this.baseURL + 'Employees/GetAll/').subscribe(result => {
+      
+      this.employees = result;
+    }, error => console.error(error));
 
+  }
 }
 
 interface Employee {

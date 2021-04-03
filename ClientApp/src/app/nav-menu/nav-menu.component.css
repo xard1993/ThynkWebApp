@@ -7,6 +7,7 @@ a.navbar-brand {
 html {
   font-size: 14px;
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -15,4 +16,26 @@ html {
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+#employee-photo {
+  border-radius: 50%;
+  width: 5vw;
+  height: 5vw;
+}
+
+.nav-item:hover, .nav-item:hover .nav-item-p, .nav-item:hover #role {
+  background-color: rgba(118,183,53);
+  color: white;
+} 
+
+
+#title {
+  font-size: 2vw;
+}
+#name {
+
+}
+#role {
+  color: #8c8c8c
 }
