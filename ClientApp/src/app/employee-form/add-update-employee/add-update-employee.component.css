@@ -1,15 +1,14 @@
 .circleBase {
   border-radius: 50%;
-
 }
 
-.type1 {
+.circle {
   width: 100px;
   height: 100px;
-  background: yellow;
-  border: 3px solid red;
+  background: none;
+  border: 3px solid #80bc43;
 }
 
+ .circle:hover {
 
-
-
+  }

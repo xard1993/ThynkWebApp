@@ -1,21 +1,11 @@
-<form [formGroup]="addUpdateForm" (ngSubmit)="onSubmit()">
-<div class="circleBase type1" (click)="file.click()">
+<form [formGroup]="addUpdateForm" (ngSubmit)="onSubmit()" class="p-3">
+<div class="circleBase circle container-fluid" (click)="file.click()">
     <span style="color:red;" *ngIf="message">{{message}}</span>
     <input style="display: none" #file type="file" accept='image/*' (change)="preview(file.files)"  />
     <img [src]="imagePath" height="200" >
   </div>
 
-    <!--<div class="circleBase type1" (click)="fileInput.click()">
-
-      <img [src]="magePath" />
-   
-
-    <input style="display: none"
-           type="file" (change)="onFileChanged($event)"
-           #fileInput formControlName="image">
-
-
-  </div>-->
+    
   <div>
     <input id="name" type="text" formControlName="name">
   </div>
