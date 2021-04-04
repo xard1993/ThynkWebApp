@@ -11,10 +11,16 @@ label{
 }
 
 #pencil:hover {
+  
+  visibility: visible!important;
+
+}
+
+
+#pencil{
   background-image: url('~/assets/img/pencil.png');
   background-repeat: no-repeat;
   background-position: center;
-  background-color: none;
   padding: 3PX;
   position: absolute;
   top: 0;
@@ -22,11 +28,9 @@ label{
   left: 0;
   right: 0;
   background: rgba(1, 1, 1, 0.7);
-  transition: opacity 500ms;
-  visibility: visible;
+  visibility: hidden;
   opacity: 1;
 }
-
 
 #photo:hover {
   background-color: #80bc43;

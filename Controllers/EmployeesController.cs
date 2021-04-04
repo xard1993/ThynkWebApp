@@ -21,6 +21,10 @@ namespace ThynkWebApp.Controllers
             _context = context;
         }
 
+
+        /**
+          * List of all employees
+          */
         [HttpGet()]
         [Route("[action]")]
         public IEnumerable<Employee> GetAll()
@@ -29,6 +33,9 @@ namespace ThynkWebApp.Controllers
             return db.Employees.ToArray();
         }
 
+        /*
+         * Get employee by id
+         */
         [HttpGet()]
         [Route("[action]/{id?}")]
         public Employee GetEmployee(int? id)
@@ -38,6 +45,9 @@ namespace ThynkWebApp.Controllers
           
         }
 
+        /*
+         * Add employee
+         */
         [HttpPost()]
         [Route("[action]")]
         public int AddEmployee(JObject employee)
@@ -55,6 +65,9 @@ namespace ThynkWebApp.Controllers
             return db.SaveChanges();            
         }
 
+        /*
+         * Update Employee
+         */
         [HttpPost()]
         [Route("[action]")]
         public int UpdateEmployee(JObject employee)
@@ -78,6 +91,9 @@ namespace ThynkWebApp.Controllers
             return 0;
         }
 
+        /*
+         * Delete employee by ID
+         */
         [HttpDelete()]
         [Route("[action]/{id?}")]
         public int DeleteEmployee(int? id)
