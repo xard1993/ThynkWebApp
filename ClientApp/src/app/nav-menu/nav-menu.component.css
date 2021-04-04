@@ -29,13 +29,46 @@ html {
   color: white;
 } 
 
-
 #title {
   font-size: 2vw;
 }
-#name {
 
-}
 #role {
   color: #8c8c8c
+}
+#plusImg {
+  height: 2vw;
+  margin: 1.2vw;
+}
+
+#delete-img{
+    width:1.1vw;
+}
+
+.overlay {
+  color: black;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+}
+.employee-headers p
+{
+    font-size :1.2vw;
+}
+
+.popup {
+  background-color: white;
+}
+
+#yes-btn, #no-btn {
+  padding-right: 4vw;
+  padding-left: 4vw;
+  margin-right: 2vw;
 }

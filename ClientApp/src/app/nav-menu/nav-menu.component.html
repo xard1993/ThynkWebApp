@@ -4,33 +4,64 @@
       <a class="navbar-brand" [routerLink]="['/']">
         <p id="title" class="text-normal fs-1">List of Employees</p>
       </a>
-      <a  [routerLink]="['/emp']">
-        <img class="float-right" src="..\assets\img\plus.png" />
+      <a [routerLink]="['/emp']">
+        <img id="plusImg" class="float-right" src="..\assets\img\plus.png" />
       </a>
     </div>
     <div>
       <ul class="navbar-nav flex-grow mt-3">
         <li class="nav-item mt-0 mr-0" *ngFor="let employee of employees">
-          <a class="navbar-brand pl-2" [routerLink]="['/emp']" [queryParams]="{Id:employee.employeeId}">
-            <div class="container pl-2">
-              <div *ngIf=" employee.photo != null ; then photo; else default">
-              </div>
-              <ng-template #photo>
-                <img id="employee-photo" src="data:image/jpeg;base64,{{ employee.photo }}" />
-              </ng-template>
-              <ng-template #default>
-                <img id="employee-photo" src="..\assets\img\unknown.jpg" />
-              </ng-template>
-              <div class="my-2 mx-2">
-                <p id="name" class="text-left nav-item-p my-0 mx-0 font-weight-bold">{{ employee.name }}</p>
-                <p id="role" class="text-left nav-item-p my-0 mx-0">{{ employee.jobRole }}</p>
+          <a class="navbar-brand pl-2 w-100" [routerLink]="['/view']" [queryParams]="{Id:employee.employeeId}">
+            <div class="container pl-2 w-100">
+              <div class="row w-100 align-items-center">
+                <div class="col-sm-1">
+                  <div *ngIf=" employee.photo != null ; then photo; else default">
+                  </div>
+                  <ng-template #photo>
+                    <img id="employee-photo" src="data:image/jpeg;base64,{{ employee.photo }}" />
+                  </ng-template>
+                  <ng-template #default>
+                    <img id="employee-photo" src="..\assets\img\unknown.jpg" />
+                  </ng-template>
+                </div>
+                <div class="col-sm pl-3 ml-3 align-items-center  employee-headers">
+
+                  <div class="row w-100">
+                    <div class="col-sm">
+                      <p id="name" class="text-left nav-item-p my-0 mx-0 font-weight-bold">{{ employee.name }}</p>
+                    </div>
+                  </div>
+                  <div class="row w-100">
+                    <div class="col-sm">
+                      <p id="role" class=" text-left nav-item-p my-0 mx-0">{{ employee.jobRole }}</p>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="col-sm-1">
+                  <div class="float-right" (click)="showPopUp(employee.employeeId)">
+                    <img id="delete-img" src="..\assets\img\delete.png" />
+                  </div>
+                </div>
+
               </div>
             </div>
-
           </a>
+
         </li>
       </ul>
     </div>
   </div>
 </nav>
+<div class="overlay d-flex d-flex-column align-items-center" *ngIf="popup">
+  <div class="popup w-100 text-center p-5">
+    <h2>Are you sure you want to delete?</h2>
+    <div class="mt-4">
+      <button type="button" id="yes-btn" (click)="deleteEmployee()" class="btn btn-lg btn-success">Yes</button>
+      <button type="button" id="no-btn" (click)="popup = false" class="btn btn-lg btn-success ">No</button>
+    </div>
+  </div>
+</div>
+
 

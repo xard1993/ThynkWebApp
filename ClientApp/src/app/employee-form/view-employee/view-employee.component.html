@@ -1,1 +1,81 @@
-﻿<div style="border: 1px solid red">view-employee Component</div>
+
+<div class="d-flex vh-100 align-items-center" id="selecttext" *ngIf="!employee">
+  <div class="w-100 text-center">
+    <p id="select-emp-text">Please select an Employee</p>
+    </div>
+  </div>
+
+<div *ngIf="employee">
+  <div class="mt-5 overflow-hidden">
+    <a href="javascript:void(0)" (click)="popup = true">
+      <img id="delete" class="float-right ml-3" src="..\assets\img\delete.png" />
+    </a>
+    <a  [routerLink]="['/emp']" [queryParams]="{Id:employee.employeeId}">
+      <img id="edit" class="float-right ml-3" src="..\assets\img\pencil.png" />
+    </a>
+  </div>
+  <div class="container-fluid">
+
+    <div *ngIf=" employee.photo != null ; then showPhoto; else default">
+    </div>
+    <ng-template #showPhoto>
+      <div class="circleBase circle circle-border container-fluid">
+        <img src="data:image/jpeg;base64,{{ employee.photo }}" id="photo">
+      </div>
+    </ng-template>
+    <ng-template #default>
+      <div class="circleBase circle circle-border container-fluid">
+        <img src="..\assets\img\unknown.jpg" id="photo">
+      </div>
+    </ng-template>
+
+    <div class="container-fluid mt-2">
+      <p id="name" class="text-center">{{employee.name}}</p>
+    </div>
+    <div>
+      <p class="employeeTitles text-center">{{employee.jobRole}}</p>
+    </div>
+
+    <div class="mt-3">
+      <p class="employeeTitles">
+        Motto
+      </p>
+      <p class="employeeInfo">{{employee.motto}}</p>
+    </div>
+
+    <div>
+      <p class="employeeTitles">
+        Hobbies
+      </p>
+      <p class="employeeInfo">{{employee.hobbies}}</p>
+    </div>
+
+    <div>
+      <p class="employeeTitles">
+        Hometown
+      </p>
+      <p class="employeeInfo">{{employee.hometown}}</p>
+    </div>
+
+    <div>
+      <p class="employeeTitles">
+        Personal Blog
+      </p>
+      <a class="employeeInfo" href="employee.personalBlog">{{employee.personalBlog}}</a>
+    </div>
+  </div>
+</div>
+<div class="overlay d-flex d-flex-column align-items-center" *ngIf="popup">
+  <div class="popup popup w-100 text-center p-5">
+    <h2>Are you sure you want to delete?</h2>
+    <div class="mt-4">
+      <button type="button" id="yes-btn" (click)="deleteEmployee()" class="btn btn-lg btn-success">Yes</button>
+      <button type="button" id="no-btn" (click)="popup = false" class="btn btn-lg btn-success ">No</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+

@@ -1,1 +1,68 @@
-﻿
+.circle {
+  position: relative;
+}
+
+.circle, #photo, #pencil {
+  width: 12vw;
+  height: 12vw;
+  border-radius: 50%;
+}
+
+#photo {
+  background-color: #80bc43;
+  padding: 4px;
+  position: absolute;
+  top: 0;
+}
+
+#name {
+  color: #80bc43;
+  font-size:1.7vw;
+  margin-bottom:0px;
+}
+
+.employeeTitles {
+  color: #8c8c8c;
+  font-size: 1.1vw;
+  margin:0px;
+}
+.employeeInfo {
+  font-size: 1.1vw;
+}
+#edit
+{
+  width:1.5vw;
+}
+
+#delete {
+  width: 1.5vw;
+}
+
+#select-emp-text {
+  color: #8c8c8c;
+  font-size:1.1vw;
+}
+
+.overlay {
+  color: black;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+}
+.popup
+{
+    background-color: white;
+}
+
+#yes-btn, #no-btn {
+  padding-right: 4vw;
+  padding-left: 4vw;
+  margin-right:2vw;
+}
+

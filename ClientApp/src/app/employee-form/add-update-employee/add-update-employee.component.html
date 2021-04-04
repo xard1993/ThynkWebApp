@@ -1,47 +1,76 @@
-<form [formGroup]="addUpdateForm" (ngSubmit)="onSubmit()" id ="form" class="p-3">
-<div class="circleBase circle circle-border container-fluid" (click)="file.click()">
+
+<form [formGroup]="addUpdateForm" id="form">
+  <div class="mt-5 overflow-hidden">
+    <a href="javascript:void(0)" (click)="popup = true">
+      <img id="delete" class="float-right ml-3" src="..\assets\img\delete.png" />
+    </a>
+    <a href="javascript:void(0)" (click)="onSubmit()">
+      <img id="save" class="float-right ml-3" src="..\assets\img\save.png" />
+    </a>
+  </div>
+  <div class="container-fluid" id="photodiv" (click)="file.click()">
     <span style="color:red;" *ngIf="message">{{message}}</span>
-    <input style="display: none" #file type="file" accept='image/*' (change)="preview(file.files)"  />
-    <img [src]="imagePath" id="photo" height="200" >
-    <div id="pencil"></div>
+    <input style="display: none" #file type="file" accept='image/*' (change)="preview(file.files)" />
+    <div *ngIf=" imagePath != ''; then showPhoto; else default">
+    </div>
+    <ng-template #showPhoto>
+      <div class="container-fluid">
+        <img [src]="imagePath" id="photo">
+      </div>
+    </ng-template>
+    <ng-template #default>
+      <div class="container-fluid">
+        <img src="..\assets\img\unknown.jpg" id="photo">
+      </div>
+    </ng-template>
+
+    <div class="container-fluid" id="pencil"></div>
   </div>
 
-    
-  <div>
-    <input id="name" type="text" formControlName="name" class="w-100 font-weight-bold">
-  </div>
-  <div>
-    <input id="jobRole" type="text" formControlName="jobRole"  class="w-100 mt-1">
-  </div>
+  <div class="mt-4">
+    <div>
+      <input id="name" type="text" formControlName="name" class="w-100 font-weight-bold"  placeholder="Name">
+    </div>
+    <div>
+      <input id="jobRole" type="text" formControlName="jobRole" class="w-100 mt-1"  placeholder="Job">
+    </div>
 
-  <div>
-    <label for="motto">
-      Motto
-    </label>
-    <input id="motto" type="text" formControlName="motto" class="w-100">
-  </div>
+    <div>
+      <label for="motto">
+        Motto
+      </label>
+      <input id="motto" type="text" formControlName="motto" class="w-100">
+    </div>
 
-  <div>
-    <label for="hobbies">
-      Hobbies
-    </label>
-    <input id="hobbies" type="text" formControlName="hobbies" class="w-100">
-  </div>
+    <div>
+      <label for="hobbies">
+        Hobbies
+      </label>
+      <input id="hobbies" type="text" formControlName="hobbies" class="w-100">
+    </div>
 
-  <div>
-    <label for="hometown">
-      Hometown
-    </label>
-    <input id="hometown" type="text" formControlName="hometown" class="w-100">
-  </div>
+    <div>
+      <label for="hometown">
+        Hometown
+      </label>
+      <input id="hometown" type="text" formControlName="hometown" class="w-100">
+    </div>
 
-  <div>
-    <label for="personalBlog">
-      Personal Blog
-    </label>
-    <input id="personalBlog" type="text" formControlName="personalBlog" class="w-100">
+    <div>
+      <label for="personalBlog">
+        Personal Blog
+      </label>
+      <input id="personalBlog" type="text" formControlName="personalBlog" class="w-100">
+    </div>
   </div>
-
-  <button class="button" type="submit">Save</button>
 
 </form>
+<div class="overlay d-flex d-flex-column align-items-center" *ngIf="popup">
+  <div class="popup popup w-100 text-center p-5">
+    <h2>Are you sure you want to delete?</h2>
+    <div class="mt-4">
+      <button type="button" id="yes-btn" (click)="deleteEmployee()" class="btn btn-lg btn-success">Yes</button>
+      <button type="button" id="no-btn" (click)="popup = false" class="btn btn-lg btn-success ">No</button>
+    </div>
+  </div>
+</div>

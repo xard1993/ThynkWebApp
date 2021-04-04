@@ -20,6 +20,7 @@ export class AddUpdateEmployeeComponent {
   imagePath;
   imgURL: any;
   message: string;
+  popup:boolean
 
 
   addUpdateForm = this.formBuilder.group({
@@ -41,14 +42,23 @@ export class AddUpdateEmployeeComponent {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.id = params["Id"];
-      if (this.id != 'undefined') {
+      if (this.id != undefined) {
         this.http.get<Employee>(this.baseUrl + 'Employees/GetEmployee/' + this.id).subscribe(result => {
           this.updateFormValues(result)
         }, error => console.error(error));
-        this.isAdd = true;
+        this.isAdd = false;
       }
       else {
-        this.isAdd = false;
+        this.isAdd = true;
+        this.addUpdateForm = this.formBuilder.group({
+          name: '',
+          jobRole: '',
+          motto: '',
+          hobbies: '',
+          hometown: '',
+          personalBlog: '',
+        });
+
       }
       
     })
@@ -61,7 +71,7 @@ export class AddUpdateEmployeeComponent {
 
     var mimeType = files[0].type;
     if (mimeType.match(/image\/jpeg/) == null) {
-      this.message = "Only images are supported.";
+      this.message = "Only jpeg images are supported.";
       return;
     }
 
@@ -72,7 +82,19 @@ export class AddUpdateEmployeeComponent {
       this.imagePath = reader.result;
     }
   }
-    
+
+
+  deleteEmployee() {
+    this.route.queryParams.subscribe(params => {
+      this.id = params["Id"];
+      this.http.delete<number>(this.baseUrl + 'Employees/DeleteEmployee/' + this.id).subscribe(result => {
+        console.log('Deleted')
+      }, error => console.error(error));
+    })
+    this.popup = false;
+    window.location.href= '/view';
+  }
+
   onUpload() {
     const uploadData = new FormData();
     uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
@@ -87,7 +109,8 @@ export class AddUpdateEmployeeComponent {
       hometown: employee["hometown"],
       personalBlog: employee["personalBlog"]
     });
-    this.imagePath = "data:image/jpeg;base64," +employee["photo"];
+    
+    this.imagePath = employee["photo"] != null ? "data:image/jpeg;base64," + employee["photo"] : "";
   }
 
   onSubmit() {
@@ -103,12 +126,16 @@ export class AddUpdateEmployeeComponent {
     else {
 
       this.addUpdateForm.value['employeeId'] = this.id;
-      const headerOptions = new HttpHeaders({ 'Content-Type': 'application/json' });
-      this.http.post<Employee>(this.baseUrl + 'Employees/UpdateEmployee/', this.addUpdateForm.value, { headers: headerOptions }).subscribe(result => {
-        console.log(result)
-      }, error => console.error(error));
+
+      if (this.id != undefined) {
+        const headerOptions = new HttpHeaders({ 'Content-Type': 'application/json' });
+        this.http.post<Employee>(this.baseUrl + 'Employees/UpdateEmployee/', this.addUpdateForm.value, { headers: headerOptions }).subscribe(result => {
+          console.log(result)
+        }, error => console.error(error));
+      }
+     
     }
-    
+    window.location.reload();
   }
 }
 

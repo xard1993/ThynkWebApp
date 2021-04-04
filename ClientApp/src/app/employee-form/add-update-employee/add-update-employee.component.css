@@ -1,21 +1,32 @@
-.circle
-{
-    position:relative;
-}
-.circle, #photo, #pencil {
+
+#photo, #pencil {
   width: 12vw;
   height: 12vw;
   border-radius: 50%;
 }
 
+label{
+    margin-bottom :0px;
+    margin-top:0.4vw;
+}
 
+#pencil:hover {
+  background-image: url('~/assets/img/pencil.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: none;
+  padding: 3PX;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(1, 1, 1, 0.7);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+}
 
-  #pencil:hover {
-    background-image: url('~/assets/img/pencil.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: none;
-  }
 
 #photo:hover {
   background-color: #80bc43;
@@ -24,16 +35,46 @@
   top: 0;
 }
 
+#photodiv {
+  position: relative;
+  width: 15vw;
+  height: 25vh;
+}
 
 #photo {
   background-color: #80bc43;
   padding: 3px;
-  position:absolute;
-  top:0;
+  position: absolute;
+  top: 0;
 }
 
 form input {
   background-color: #f1f1f1;
   border: 1px solid #cdcdcd !important;
 }
+
+.overlay {
+  color: blue;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  background-color: white;
+}
+
+#yes-btn, #no-btn {
+  padding-right: 4vw;
+  padding-left: 4vw;
+  margin-right: 2vw;
+}
+
+
 

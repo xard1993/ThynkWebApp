@@ -11,6 +11,8 @@ export class NavMenuComponent {
   public employees: Employee[];
   baseURL: string;
   http: HttpClient;
+  popup: boolean;
+  id: string;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseURL = baseUrl;
@@ -23,6 +25,25 @@ export class NavMenuComponent {
       this.employees = result;
     }, error => console.error(error));
 
+  }
+
+  showPopUp(id: string) {
+    this.popup = true;
+    this.id = id;
+  }
+
+ hidePopUp() {
+    this.popup = false;
+    this.id = '';
+  }
+
+  deleteEmployee() {
+    
+    this.http.delete<number>(this.baseURL + 'Employees/DeleteEmployee/' +this.id).subscribe(result => {
+        console.log('Deleted')
+      }, error => console.error(error));
+    this.hidePopUp();
+    window.location.reload();
   }
 }
 

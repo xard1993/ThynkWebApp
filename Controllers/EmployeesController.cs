@@ -49,7 +49,7 @@ namespace ThynkWebApp.Controllers
             emp.Motto = (string)employee["motto"];
             emp.Hobbies = (string)employee["hobbies"];
             emp.Hometown = (string)employee["hometown"];
-            emp.PersonalBlog = (string)employee["personalbBlog"];
+            emp.PersonalBlog = (string)employee["personalBlog"];
             emp.Photo = (string)employee["photo"] != null ? Convert.FromBase64String((string)employee["photo"]) : null;
             db.Employees.Add(emp);
             return db.SaveChanges();            
@@ -78,12 +78,12 @@ namespace ThynkWebApp.Controllers
             return 0;
         }
 
-        [HttpPost()]
+        [HttpDelete()]
         [Route("[action]/{id?}")]
-        public int DeleteEmployee(int? employeeID)
+        public int DeleteEmployee(int? id)
         {
             ThynkTaskContext db = new();
-            var employeeResult = db.Employees.Where(x => x.EmployeeId == employeeID).SingleOrDefault();
+            var employeeResult = db.Employees.Where(x => x.EmployeeId == id).SingleOrDefault();
             db.Employees.Remove(employeeResult);
             return db.SaveChanges();          
         }

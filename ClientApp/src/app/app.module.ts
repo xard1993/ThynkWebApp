@@ -6,21 +6,17 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AddUpdateEmployeeComponent } from './employee-form/add-update-employee/add-update-employee.component';
+import { ViewEmployeeComponent } from './employee-form/view-employee/view-employee.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
-    AddUpdateEmployeeComponent
+    NavMenuComponent,   
+    AddUpdateEmployeeComponent,
+    ViewEmployeeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -28,9 +24,9 @@ import { AddUpdateEmployeeComponent } from './employee-form/add-update-employee/
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
+      { path: '', component: ViewEmployeeComponent, pathMatch: 'full' },
+      { path: 'view', component: ViewEmployeeComponent, pathMatch: 'full' },
       { path: 'emp', component: AddUpdateEmployeeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
   providers: [],
